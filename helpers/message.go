@@ -39,6 +39,6 @@ func broadcastMessage(message string, sender net.Conn, connections []net.Conn, n
 					fmt.Fprintf(conn,"\n%s",remoteCursor)
 			}
 	}
-	WriteHistory(cursor + message + "\n")
+	WriteHistory(cursor + message)
 	WriteLog(cursor+message+"\n")
 }
