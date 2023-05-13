@@ -23,8 +23,8 @@ func HandleConnection(conn net.Conn, connections *[]net.Conn,i *int){
 	name := <-nameChannel
 	remoteAddrToName[conn.RemoteAddr().String()]=name
 	ReadHistory(conn)
-	connexionNofication := fmt.Sprintf("%s has joined the chat",name)
-	disconectNotication := fmt.Sprintf("%s has left the chat",name)
+	connexionNofication := fmt.Sprintf("%s has joined our chat...",name)
+	disconectNotication := fmt.Sprintf("%s has left our chat...",name)
 	Notify(connexionNofication,conn,*connections,name,remoteAddrToName)
 	ReadMessage(conn,name,connections,remoteAddrToName)
 	defer Notify(disconectNotication,conn,*connections,name,remoteAddrToName)
