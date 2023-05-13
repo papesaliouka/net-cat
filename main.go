@@ -29,7 +29,6 @@ func main() {
 			}
 			connections = append(connections, conn)
 			go helpers.HandleConnection(conn,&connections,&i)
-			fmt.Println(len(connections))
 			i++
 		}
 	}

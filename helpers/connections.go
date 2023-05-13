@@ -37,7 +37,7 @@ func Notify(message string, sender net.Conn, connections []net.Conn, name string
 	}
 	for _, conn := range connections {
 			if conn != sender {
-					fmt.Fprintf(conn, "%s",message)
+					fmt.Fprintf(conn, "\n%s",message)
 					remoteCursor:=fmt.Sprintf("[%s][%s]:", GetDate(), remoteAddrToName[conn.RemoteAddr().String()])
 					fmt.Fprintf(conn,"\n%s",remoteCursor)
 			}
