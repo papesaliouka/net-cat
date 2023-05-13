@@ -43,10 +43,6 @@ func ReadHistory(conn net.Conn) {
 	}
 }
 
-
-
-var hasWritten bool = true // Track if text has been written to the file
-
 func WriteHistory(data string) {
 	file, err := os.OpenFile("db/chathistory.txt", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0644)
 	if err != nil {
@@ -54,25 +50,11 @@ func WriteHistory(data string) {
 	}
 	defer file.Close()
 
-	fileInfo, _ := file.Stat()
-	isEmpty := fileInfo.Size() == 0
-
-	if isEmpty && hasWritten {
-		_, err = file.WriteString("\n")
-		if err != nil {
-			fmt.Print(err)
-		}
-		hasWritten = false
-	}
-
 	_, err = file.WriteString(data)
 	if err != nil {
 		fmt.Print(err)
 	}
 
-	if !isEmpty {
-		hasWritten = true
-	}
 }
 
 

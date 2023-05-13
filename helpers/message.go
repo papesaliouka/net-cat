@@ -33,7 +33,7 @@ func broadcastMessage(message string, sender net.Conn, connections []net.Conn, n
 	var cursor string
 	for _, conn := range connections {
 			if conn != sender {
-					cursor = fmt.Sprintf("\033[1E[%s][%s]:", GetDate(), name)
+					cursor = fmt.Sprintf("\n[%s][%s]:", GetDate(), name)
 					fmt.Fprintf(conn, "%s%s", cursor, message)
 					remoteCursor:=fmt.Sprintf("[%s][%s]:", GetDate(), remoteAddrToName[conn.RemoteAddr().String()])
 					fmt.Fprintf(conn,"\n%s",remoteCursor)
