@@ -31,6 +31,7 @@ func broadcastMessage(message string, sender net.Conn, connections []net.Conn, n
 		return
 	}
 	var cursor string
+	cursor = fmt.Sprintf("\n[%s][%s]:", GetDate(), name)
 	for _, conn := range connections {
 			if conn != sender {
 					cursor = fmt.Sprintf("\n[%s][%s]:", GetDate(), name)

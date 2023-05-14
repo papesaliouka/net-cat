@@ -39,7 +39,11 @@ func ReadHistory(conn net.Conn) {
 	defer historychat.Close()
 	scanner1 := bufio.NewScanner(historychat)
 	for scanner1.Scan() {
-		fmt.Fprintln(conn, string(scanner1.Text()))
+		line := scanner1.Text()
+		if len(line) == 0{
+			continue
+		}
+		fmt.Fprintln(conn, line)
 	}
 }
 
