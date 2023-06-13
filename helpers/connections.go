@@ -19,8 +19,14 @@ func GetListener(port string) (net.Listener, bool) {
 
 func HandleConnection(conn net.Conn, connections *[]net.Conn,i *int){
 	ReadLogo(conn)
+	label:
 	GetName(conn)
 	name := <-nameChannel
+
+	if name==""{
+		goto label
+	}
+
 	remoteAddrToName[conn.RemoteAddr().String()]=name
 	ReadHistory(conn)
 	connexionNofication := fmt.Sprintf("%s has joined our chat...",name)

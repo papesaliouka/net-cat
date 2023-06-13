@@ -24,9 +24,10 @@ func GetPort() string {
 }
 
 func GetName(conn net.Conn)  {
-
 	fmt.Fprintf(conn, "[ENTER YOUR NAME]:")
 	name, err := bufio.NewReader(conn).ReadString('\n')
+
+
 	if err !=nil{
 		nameChannel <-"anonymous"
 	}
